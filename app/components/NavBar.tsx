@@ -17,7 +17,7 @@ type NavBarProps = {
 
 export const navItems: NavItem[] = [
   { type: "link", label: "Home", path: "/" },
-  { type: "link", label: "About", path: "/about" },
+  { type: "link", label: "About", path: "#about" },
   { type: "link", label: "Posts", path: "/posts" },
   { type: "link", label: "Projects", path: "/projects" },
   { type: "link", label: "Contact", path: "/contact" },
@@ -64,7 +64,7 @@ const NavBar = ({ navItems }: NavBarProps) => {
   const toggleOpen = () => setIsOpen((p) => !p);
   return (
     <>
-      <nav className="flex justify-between items-center">
+      <nav className="flex justify-between items-center h-8">
         <div>
           <h1 className="text-xl font-bold">
             <Link

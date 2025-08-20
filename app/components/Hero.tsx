@@ -9,7 +9,7 @@ const Hero = () => {
       style={{ backgroundImage: "url(./services_background.png)" }}
     >
       <div className="bg-[rgba(0,0,0,0.65)]">
-        <Container className="min-h-150 flex flex-col gap-6 items-center justify-center text-center py-20">
+        <Container className="min-h-[calc(100vh-32px)] flex flex-col gap-6 items-center justify-center text-center py-20">
           <h2
             style={{ textShadow: "1px 1px black" }}
             className="text-white text-5xl font-extrabold md:text-6xl leading-tight"
