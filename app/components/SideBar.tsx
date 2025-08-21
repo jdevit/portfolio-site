@@ -5,20 +5,33 @@ import Portal from "./Portal";
 import Link from "next/link";
 import clsx from "clsx";
 import NavToggle from "./NavToggle";
-import { navItems } from "./NavBar";
 import { usePathname, useRouter } from "next/navigation";
+import { NavItemProps } from "./NavItem";
 
 type SideBarProps = {
   isOpen: boolean;
   toggleOpen: () => void;
+  navItems: NavItemProps[];
 };
 
-const SideBar = ({ isOpen, toggleOpen }: SideBarProps) => {
+const SideBar = ({ isOpen, toggleOpen, navItems }: SideBarProps) => {
   const [visible, setVisible] = useState(false);
   const [bgActive, setBgActive] = useState(false);
 
   const nav = useRouter();
-  const activePath = usePathname();
+  const path = usePathname();
+  const [activePath, setActivePath] = useState(path);
+
+  // keep activePath in sync with path + hash
+  useEffect(() => {
+    const updateActive = () => {
+      setActivePath(path + window.location.hash);
+    };
+    updateActive();
+    window.addEventListener("hashchange", updateActive);
+    return () => window.removeEventListener("hashchange", updateActive);
+  }, [path]);
+
   // Animate in/out
   useEffect(() => {
     if (isOpen) {
@@ -46,10 +59,22 @@ const SideBar = ({ isOpen, toggleOpen }: SideBarProps) => {
 
   const renderItems = () =>
     navItems.map((item) => (
-      <li key={item.label} onClick={() => isOpen && toggleOpen()}>
+      <li
+        key={item.label}
+        onClick={() => {
+          setActivePath(
+            item.label === "Admin"
+              ? "/admin"
+              : item.type === "link"
+              ? item.path
+              : ""
+          );
+          if (isOpen) toggleOpen();
+        }}
+      >
         {item.type === "button" ? (
           <button
-            className=" cursor-pointer px-4 py-1 rounded-sm border-2 hover:shadow-md duration-200"
+            className="cursor-pointer px-4 py-1 rounded-sm border-2 hover:shadow-md duration-200"
             onClick={() =>
               item.label === "Admin" ? nav.push("/admin") : item.onClick()
             }
@@ -57,18 +82,23 @@ const SideBar = ({ isOpen, toggleOpen }: SideBarProps) => {
             {item.label}
           </button>
         ) : (
-          <Link className=" group" href={item.path}>
+          <Link
+            className="group"
+            href={item.path}
+            onClick={() => setActivePath(item.path)}
+          >
             {item.label}
             <span
               className={clsx(
                 "block h-[2px] duration-200 w-0 group-hover:w-full",
-                item.path === activePath ? "w-full bg-teal-500" : "bg-gray-400"
+                activePath === item.path ? "w-full bg-teal-500" : "bg-gray-400"
               )}
             />
           </Link>
         )}
       </li>
     ));
+
   return (
     <Portal>
       {/* Backdrop */}
@@ -91,6 +121,7 @@ const SideBar = ({ isOpen, toggleOpen }: SideBarProps) => {
             <Link
               className="text-black hover:text-gray-800 duration-200 text-xl font-bold"
               href="/"
+              onClick={() => setActivePath("/")}
             >
               JeremyBarber
             </Link>

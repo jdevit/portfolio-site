@@ -1,14 +1,33 @@
-export default function Footer() {
+export type FooterProps = {
+  footerData: {
+    brand: {
+      name: string;
+      description: string;
+    };
+    quickLinks: Array<{
+      href: string;
+      label: string;
+    }>;
+    contact: Array<{
+      href: string;
+      label: string;
+      external?: boolean;
+    }>;
+    copyright: string;
+  };
+};
+
+export default function Footer({ footerData }: FooterProps) {
   return (
     <footer className="bg-gradient-to-br from-gray-900 to-gray-700 text-gray-300">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Brand */}
         <div>
-          <h2 className="text-white text-lg font-bold">Jeremy Barber</h2>
+          <h2 className="text-white text-lg font-bold">
+            {footerData.brand.name}
+          </h2>
           <p className="mt-4 text-sm leading-relaxed">
-            Cloud Engineer & Full-Stack Developer. Designing scalable cloud
-            solutions, automation workflows, and building modern web
-            applications. AWS Solutions Architect - Associate certified.
+            {footerData.brand.description}
           </p>
         </div>
 
@@ -16,26 +35,13 @@ export default function Footer() {
         <div>
           <h2 className="text-white text-lg font-bold">Quick Links</h2>
           <ul className="mt-4 space-y-2">
-            <li>
-              <a href="/projects" className="hover:text-white">
-                Projects
-              </a>
-            </li>
-            <li>
-              <a href="/posts" className="hover:text-white">
-                Posts
-              </a>
-            </li>
-            <li>
-              <a href="/about" className="hover:text-white">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="/contact" className="hover:text-white">
-                Contact
-              </a>
-            </li>
+            {footerData.quickLinks.map((link, index) => (
+              <li key={index}>
+                <a href={link.href} className="hover:text-white">
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -43,41 +49,25 @@ export default function Footer() {
         <div>
           <h2 className="text-white text-lg font-bold">Contact</h2>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>
-              <a
-                href="mailto:jeremydanielbarber@gmail.com"
-                className="hover:text-white"
-              >
-                jeremydanielbarber@gmail.com
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://linkedin.com/in/jeremy-bar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/yourgithub"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
-                GitHub
-              </a>
-            </li>
+            {footerData.contact.map((item, index) => (
+              <li key={index}>
+                <a
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
+                  className="hover:text-white"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-700 py-4 text-center text-sm text-gray-400">
-        © {new Date().getFullYear()} Jeremy Barber. All rights reserved.
+        © {new Date().getFullYear()} {footerData.copyright}
       </div>
     </footer>
   );

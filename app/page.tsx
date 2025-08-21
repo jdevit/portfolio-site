@@ -4,16 +4,29 @@ import About from "./components/About";
 import FeaturedProjects from "./components/FeaturedProjects";
 import SkillsSection from "./components/Skills";
 import ScrollTop from "./components/ScrollTop";
+import Banner from "./components/Banner";
+import FeaturedPosts from "./components/FeaturedPosts";
+import {
+  mockAboutData,
+  mockBannerData,
+  mockHeroData,
+  mockPostsData,
+  mockProjectsData,
+  skillCategories,
+} from "./data";
 
 const HomePage = () => {
   return (
     <div>
-      <Hero />
-      <About />
+      <Hero {...mockHeroData} />
+      <FeaturedProjects projects={mockProjectsData} />
 
-      <SkillsSection />
-      <FeaturedProjects />
+      <SkillsSection categories={skillCategories} />
+
       <ScrollTop />
+      <FeaturedPosts posts={mockPostsData} />
+      <Banner {...mockBannerData} />
+      <About {...mockAboutData} />
     </div>
   );
 };

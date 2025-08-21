@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Container from "./components/Container";
-import NavBar, { navItems } from "./components/NavBar";
 import Footer from "./components/Footer";
+import SiteHeader from "./components/SiteHeader";
+import { mockFooterData } from "./data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,13 +31,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="min-h-screen flex flex-col">
-          <header className="border-b-2 border-gray-400 bg-gradient-to-br from-purple-600 to-blue-500 flex-none">
-            <Container className="sm:max-w-7xl">
-              <NavBar navItems={navItems} />
-            </Container>
-          </header>
+          <SiteHeader />
           <main className="flex-1">{children}</main>
-          <Footer />
+          <Footer footerData={mockFooterData} />
         </div>
 
         <div id="offCanvas"></div>

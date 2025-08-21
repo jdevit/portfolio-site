@@ -11,19 +11,6 @@ type NavBarProps = {
   navItems: NavItemProps[];
 };
 
-export const navItems: NavItemProps[] = [
-  { type: "link", label: "Home", path: "/" },
-  { type: "link", label: "About", path: "/#about" },
-  { type: "link", label: "Posts", path: "/posts" },
-  { type: "link", label: "Projects", path: "/#projects" },
-  { type: "link", label: "Contact", path: "/contact" },
-  {
-    type: "button",
-    label: "Admin",
-    onClick: () => {},
-  },
-];
-
 const NavBar = ({ navItems }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const nav = useRouter();
@@ -71,7 +58,7 @@ const NavBar = ({ navItems }: NavBarProps) => {
         <ul className="md:flex items-center gap-4 hidden">{renderItems()}</ul>
         <NavToggle isOpen={isOpen} toggleOpen={toggleOpen} />
       </nav>
-      <SideBar isOpen={isOpen} toggleOpen={toggleOpen} />
+      <SideBar navItems={navItems} isOpen={isOpen} toggleOpen={toggleOpen} />
     </>
   );
 };
