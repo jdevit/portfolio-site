@@ -21,9 +21,9 @@ export const mockAboutData: AboutProps = {
   imageSrc: "profile.png",
   imageAlt: "Jeremy Barber",
   paragraphs: [
-    'I’m <span className="font-semibold">Jeremy Barber</span>, a Cloud Engineer and Full-Stack Developer with 4+ years of experience supporting hybrid on-prem and cloud environments. I specialize in designing scalable AWS architectures, automating workflows with Bash, Python, and Node.js, and troubleshooting complex networking and Linux system issues.',
-    "Beyond infrastructure, I enjoy building modern web applications with React and Node.js, bridging the gap between cloud systems and user-facing tools. My work blends hands-on technical support, automation scripting, and development to deliver reliable, efficient solutions.",
-    "AWS Solutions Architect – Associate certified, I’m actively building and deploying projects that showcase cloud-native design, security best practices, and practical problem solving.",
+    "I’m Jeremy Barber, a Cloud Engineer and Full-Stack Developer with 4+ years of experience in hybrid on-prem and cloud environments. I design scalable AWS architectures, automate workflows with Bash, Python, and Node.js, and troubleshoot complex networking and Linux systems.",
+    "Beyond infrastructure, I build modern web applications with React and Node.js, connecting cloud systems to user-facing tools. My work combines technical support, automation, and development to deliver reliable, efficient solutions.",
+    "AWS Solutions Architect – Associate certified, I actively design and deploy projects that demonstrate cloud-native architecture, strong security practices, and practical problem solving.",
   ],
 };
 export const mockBannerData: BannerProps = {
@@ -46,6 +46,13 @@ export const mockPostsData: Post[] = [
     ],
     url: "https://placehold.co/400",
     images: [{ id: 1, url: "https://placehold.co/400" }],
+    slug: "scaling-nodejs-apis-on-aws",
+    author: {
+      firstName: "Jeremy",
+      lastName: "Barber",
+      avatarUrl: "profile.png",
+    },
+    datePublished: "2023-05-15",
   },
   {
     id: 2,
@@ -60,6 +67,13 @@ export const mockPostsData: Post[] = [
     ],
     url: "https://placehold.co/400",
     images: [{ id: 1, url: "https://placehold.co/400" }],
+    slug: "mastering-react-state-management",
+    author: {
+      firstName: "Jeremy",
+      lastName: "Barber",
+      avatarUrl: "profile.png",
+    },
+    datePublished: "2023-07-22",
   },
   {
     id: 3,
@@ -74,6 +88,13 @@ export const mockPostsData: Post[] = [
     ],
     url: "https://placehold.co/400",
     images: [{ id: 1, url: "https://placehold.co/400" }],
+    slug: "optimizing-sql-queries-for-performance",
+    author: {
+      firstName: "Jeremy",
+      lastName: "Barber",
+      avatarUrl: "profile.png",
+    },
+    datePublished: "2023-09-10",
   },
 ];
 export const mockProjectsData: Project[] = [
@@ -163,7 +184,7 @@ export const mockHeroData: HeroProps = {
 export const navItems: NavItemProps[] = [
   { type: "link", label: "Home", path: "/" },
   { type: "link", label: "About", path: "/#about" },
-  { type: "link", label: "Posts", path: "/posts" },
+  { type: "link", label: "Posts", path: "/#posts" },
   { type: "link", label: "Projects", path: "/#projects" },
   { type: "link", label: "Contact", path: "/contact" },
   {

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Container from "./Container";
 
 export type BannerProps =
   | {
@@ -29,7 +30,7 @@ const Banner = ({ title, lead, actionText, href, onClick }: BannerProps) => {
       {/* Optional overlay for readability */}
       <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
 
-      <div className="relative container mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <Container className="relative px-6 py-16 md:py-20">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="text-center md:text-left max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-extrabold leading-tight mb-3 drop-shadow-sm">
@@ -49,7 +50,7 @@ const Banner = ({ title, lead, actionText, href, onClick }: BannerProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Gradient animation keyframes */}
       <style jsx>{`

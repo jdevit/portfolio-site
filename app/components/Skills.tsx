@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Container from "./Container";
 
 export type SkillCategory = {
   id: number;
@@ -13,7 +14,7 @@ const SkillsSection = ({ categories }: { categories: SkillCategory[] }) => {
 
   return (
     <section id="skills" className="">
-      <div className="container mx-auto px-4 py-24">
+      <Container className="py-24">
         <h2 className="text-3xl font-bold text-center mb-12">Skills</h2>
 
         <div className="flex flex-col md:flex-row gap-8">
@@ -23,14 +24,14 @@ const SkillsSection = ({ categories }: { categories: SkillCategory[] }) => {
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-200 ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-200 whitespace-nowrap ${
                   activeCategory === category.id
                     ? "bg-indigo-600 text-white shadow-md"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
                 {category.icon}
-                <span className="whitespace-nowrap">{category.name}</span>
+                <span className="truncate">{category.name}</span>
               </button>
             ))}
           </div>
@@ -50,7 +51,7 @@ const SkillsSection = ({ categories }: { categories: SkillCategory[] }) => {
             </ul>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
